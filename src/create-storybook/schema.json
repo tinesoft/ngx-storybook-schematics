@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "NgxStorybookSchematicsCreate",
+    "title": "Create Storybook Options Schema",
+    "type": "object",
+    "properties": {
+      "project": {
+        "type": "string",
+        "description": "The name of the project.",
+        "$default": {
+          "$source": "projectName"
+        }
+      },
+      "skipInstall": {
+        "description": "Skip installing Storybook dependency packages.",
+        "type": "boolean",
+        "default": false
+      },
+      "excludeStoriesFromTsCompilation": {
+        "description": "Exclude your stories from being compiled when running in dev.",
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "required": []
+  }

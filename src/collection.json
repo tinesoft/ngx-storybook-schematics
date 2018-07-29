@@ -1,0 +1,29 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "create-storybook": {
+      "description": "A schematics to easily add Storybook to your Angular CLI project.",
+      "factory": "./create-storybook/index",
+      "alias": "cs",
+      "schema": "./create-storybook/schema.json"
+    },
+    "update-storybook": {
+      "description": "A schematics to update existing components in your Storybook;",
+      "factory": "./update-storybook/index",
+      "alias": "us",
+      "schema": "./update-storybook/schema.json"
+    },
+    "add-component": {
+      "description": "A schematics to add a component to your Storybook",
+      "factory": "./add-component/index",
+      "alias": "ac",
+      "schema": "./add-component/schema.json"
+    },
+    "remove-component": {
+      "description": "A schematics to remove a component from your Storybook.",
+      "factory": "./remove-component/index",
+      "alias": "rc",
+      "schema": "./remove-component/schema.json"
+    }
+  }
+}
