@@ -38,7 +38,7 @@ export default function(options: CreateStorybookOptions): Rule {
       updateDependencies(options),
       addStorybookFiles(options),
       addStorybookScriptToPackageJson(),
-      options.excludeStoriesFromTsCompilation? addStorybookExclusionsToAppTsConfigJson(options): noop()
+      options.excludeStoriesFromAppCompilation? addStorybookExclusionsToAppTsConfigJson(options): noop()
     ])(tree, context);
   };
 }
@@ -75,7 +75,6 @@ function updateDependencies(options: CreateStorybookOptions): Rule {
   };
 }
 
-
 function addStorybookFiles(options: CreateStorybookOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
     context.logger.debug('adding Storybook files to host dir');
@@ -86,10 +85,7 @@ function addStorybookFiles(options: CreateStorybookOptions): Rule {
       move(projectRoot),
     ]);
 
-    return chain([mergeWith(templateSource)])(
-      tree,
-      context
-    );
+    return mergeWith(templateSource)(tree,context);
   };
 }
 
@@ -101,11 +97,10 @@ function addStorybookScriptToPackageJson(): Rule {
   };
 }
 
-
 function addStorybookExclusionsToAppTsConfigJson(options: CreateStorybookOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
 
-    const appTsConfigPath = getProjectPath(tree,options,'src/app/tsconfig.app.json');
+    const appTsConfigPath = getProjectPath(tree,options,'tsconfig.app.json');
     addPropertyToJsonAst(tree, context, appTsConfigPath, 'exclusions', Constants.tsConfigExclusions, true);
     return tree;
   };

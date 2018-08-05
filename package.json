@@ -1,17 +1,16 @@
 {
   "name": "ngx-storybook-schematics",
-  "version": "0.0.0",
-  "description": "Angular schematics for adding Storybook to showcase components of your Angular CLI application.",
+  "version": "0.0.0-development",
+  "description": "Schematics for adding Storybook to showcase components of your Angular application.",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && jasmine src/**/*_spec.js"
+    "commitmsg": "commitlint -E GIT_PARAMS"
   },
   "keywords": [
-    "schematics", 
+    "schematics",
     "storybook",
     "showcase",
     "component"
-
   ],
   "author": "Tine Kondo",
   "license": "MIT",
@@ -19,9 +18,63 @@
   "dependencies": {
     "@angular-devkit/core": "^0.6.8",
     "@angular-devkit/schematics": "^0.6.8",
+    "typescript": "^2.9.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-conventional": "^7.0.1",
+    "@schematics/angular": "^0.6.8",
     "@types/jasmine": "^2.6.0",
+    "@types/jest": "^23.3.1",
     "@types/node": "^8.0.31",
+    "ansi-colors": "^2.0.5",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "del": "^3.0.0",
+    "fancy-log": "^1.3.2",
+    "gulp": "4.0",
+    "gulp-file": "^0.4.0",
+    "husky": "^0.14.3",
     "jasmine": "^2.8.0",
-    "typescript": "^2.5.2"
+    "jest": "^23.4.2",
+    "jest-cli": "^23.4.2",
+    "pump": "^3.0.0",
+    "rxjs": "^6.2.2",
+    "semantic-release": "^15.9.3",
+    "stream-buffers": "^3.0.2",
+    "ts-jest": "^23.0.1",
+    "yargs": "^12.0.1",
+    "zyan-gulp-coveralls": "^0.1.7"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "plugins": [
+      "transform-runtime",
+      "transform-async-to-generator"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "/src/.*_spec.ts$",
+    "testURL": "http://localhost/",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tinesoft/ngx-storybook-schematics.git"
   }
 }

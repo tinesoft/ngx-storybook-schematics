@@ -1,14 +1,11 @@
-# Outputs
-src/**/*.js
-src/**/*.js.map
-src/**/*.d.ts
-
 # IDEs
 .idea/
 jsconfig.json
 .vscode/
 
 # Misc
+dist/
+coverage/
 node_modules/
 npm-debug.log*
 yarn-error.log*

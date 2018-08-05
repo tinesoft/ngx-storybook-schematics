@@ -1,28 +1,70 @@
-# Getting Started With Schematics
 
-This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM.
+# Schematics to easily add [Storybook](https://storybook.js.org/) support to your Angular projects
 
-### Testing
+[![npm version](https://badge.fury.io/js/ngx-storybook-schematics.svg)](https://badge.fury.io/js/ngx-storybook-schematics)
+[![Build Status](https://travis-ci.org/tinesoft/ngx-storybook-schematics.svg?branch=master)](https://travis-ci.org/tinesoft/ngx-storybook-schematics)
+[![Coverage Status](https://coveralls.io/repos/github/tinesoft/ngx-storybook-schematics/badge.svg?branch=master)](https://coveralls.io/github/tinesoft/ngx-storybook-schematics?branch=master)
+[![dependency Status](https://david-dm.org/tinesoft/ngx-storybook-schematics/status.svg)](https://david-dm.org/tinesoft/ngx-storybook-schematics)
+[![devDependency Status](https://david-dm.org/tinesoft/ngx-storybook-schematics/dev-status.svg?branch=master)](https://david-dm.org/tinesoft/ngx-storybook-schematics?type=dev)
 
-To test locally, install `@angular-devkit/schematics` globally and use the `schematics` command line tool. That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.
+## Requirements
 
-Check the documentation with
-```bash
-schematics --help
+* Project built with [Angular CLI v6+](https://cli.angular.io) (tested with CLI v6.1.3, Angular v6.1.2)
+
+## Installation
+
+Install globally
+
+```shell
+npm install -g ngx-storybook-schematics
 ```
 
-### Unit Testing
+Optionally run as one command in an Angular CLI app directory. Note this will add the schematic as a dependency to your project.
 
-`npm run test` will run the unit tests, using Jasmine as a runner and test framework.
-
-### Publishing
-
-To publish, simply do:
-
-```bash
-npm run build
-npm publish
+```shell
+ng add ngx-storybook-schematics
 ```
 
-That's it!
- 
+## Usage
+
+In an Angular CLI project run
+
+```shell
+ng g ngx-storybook-schematics:create-storybook
+```
+
+This schematic will:
+
+* install Storybook, its dependencies, and scripts
+* add necessary files for Storybook to work with Angular
+
+![ngx-create-storybook](demo/src/assets/ngx-create-storybook.svg)
+
+You can now launch the Storybook by:
+
+```shell
+npm run storybook
+```
+
+Now hit `http://localhost:9001/` in your browser, to see your components in action.
+
+---
+
+You can also provide the given options when running the schematic:
+
+option | description
+--- | ---
+skipInstall (_boolean, default: false_) | Skip automatic installation of Storybook dependency packages
+excludeStoriesFromAppCompilation (_boolean, default: false_) | [Troobleshooting](https://storybook.js.org/basics/guide-angular/#trouble-shooting)) Exclude your stories from being compiled when running your angular dev environment
+
+## Roadmap
+
+These feature schematics are coming (very) soon into the collection:
+
+* add a schematic to automatically scan and add app component(s) to the Storybook
+* add a schematic to support [addons](https://storybook.js.org/addons/using-addons/)
+* add a schematic to remove support for Storybook at any time
+
+## License
+
+Copyright (c) 2018 Tine Kondo. Licensed under the MIT License (MIT)

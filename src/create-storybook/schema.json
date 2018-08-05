@@ -16,7 +16,7 @@
         "type": "boolean",
         "default": false
       },
-      "excludeStoriesFromTsCompilation": {
+      "excludeStoriesFromTsConfig": {
         "description": "Exclude your stories from being compiled when running in dev.",
         "type": "boolean",
         "default": false
