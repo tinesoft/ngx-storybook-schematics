@@ -7,7 +7,6 @@ import jestCli from 'jest-cli';
 import gulpFile from 'gulp-file';
 import gulpCoveralls from 'zyan-gulp-coveralls';
 import { execCmd, execExternalCmd } from './utility/helpers';
-import semanticRelease from 'semantic-release';
 import { WritableStreamBuffer } from 'stream-buffers';
 
 const stdoutBuffer = new WritableStreamBuffer();
@@ -96,41 +95,7 @@ export const coveralls = (done) => {
 coveralls.description = `Upload coverage report on coveralls.io, when run on Travis CI`;
 
 //Releasing tasks
-export const release = async () => {
-  try {
-    const result = await semanticRelease({
-      // Core options
-      branch: 'master',
-    }, {
-        cwd: `${config.buildDir}`,
-        // Store stdout and stderr to use later instead of writing to `process.stdout` and `process.stderr`
-        stdout: stdoutBuffer,
-        stderr: stderrBuffer
-      });
-
-    if (result) {
-      const { lastRelease, commits, nextRelease, releases } = result;
-
-      console.log(`Published ${nextRelease.type} release version ${nextRelease.version} containing ${commits.length} commits.`);
-
-      if (lastRelease.version) {
-        console.log(`The last release was "${lastRelease.version}".`);
-      }
-
-      for (const release of releases) {
-        console.log(`The release was published with plugin "${pluginName}".`);
-      }
-    } else {
-      console.log('No release published.');
-    }
-
-    // Get stdout and stderr content
-    const logs = stdoutBuffer.getContentsAsString('utf8');
-    const errors = stderrBuffer.getContentsAsString('utf8');
-  } catch (err) {
-    console.error('The automated release failed with %O', err)
-  }
-};
+export const release = () => execExternalCmd('npm', 'run semantic-release');
 release.description = `Semantically release project at '${config.buildDir}/'`;
 
 export const build = gulp.series(clean, compile, test, assemble);
