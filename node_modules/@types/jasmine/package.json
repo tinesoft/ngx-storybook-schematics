@@ -1,0 +1,47 @@
+{
+    "name": "@types/jasmine",
+    "version": "2.8.8",
+    "description": "TypeScript definitions for Jasmine",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Boris Yankov",
+            "url": "https://github.com/borisyankov",
+            "githubUsername": "borisyankov"
+        },
+        {
+            "name": "Theodore Brown",
+            "url": "https://github.com/theodorejb",
+            "githubUsername": "theodorejb"
+        },
+        {
+            "name": "David Pärsson",
+            "url": "https://github.com/davidparsson",
+            "githubUsername": "davidparsson"
+        },
+        {
+            "name": "Gabe Moothart",
+            "url": "https://github.com/gmoothart",
+            "githubUsername": "gmoothart"
+        },
+        {
+            "name": "Lukas Zech",
+            "url": "https://github.com/lukas-zech-software",
+            "githubUsername": "lukas-zech-software"
+        },
+        {
+            "name": "Boris Breuer",
+            "url": "https://github.com/Engineer2B",
+            "githubUsername": "Engineer2B"
+        }
+    ],
+    "main": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "typesPublisherContentHash": "af1f6aa3243e31a4253ec39bad706b4ee4ea462caa090f1942ccba30a7da99b7",
+    "typeScriptVersion": "2.1"
+}

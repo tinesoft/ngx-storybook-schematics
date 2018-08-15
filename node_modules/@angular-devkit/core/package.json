@@ -1,0 +1,34 @@
+{
+  "name": "@angular-devkit/core",
+  "version": "0.6.8",
+  "description": "Angular DevKit - Core Utility Library",
+  "main": "src/index.js",
+  "typings": "src/index.d.ts",
+  "keywords": [
+    "angular",
+    "devkit",
+    "sdk",
+    "Angular DevKit",
+    "core"
+  ],
+  "dependencies": {
+    "ajv": "~6.4.0",
+    "chokidar": "^2.0.3",
+    "source-map": "^0.5.6",
+    "rxjs": "^6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/devkit.git"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.5.1"
+  },
+  "author": "Angular Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angular/devkit/issues"
+  },
+  "homepage": "https://github.com/angular/devkit"
+}
