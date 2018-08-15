@@ -58,8 +58,8 @@ You can also provide the given options when running the schematic:
 
 option | description
 --- | ---
-skipInstall (_boolean, default: false_) | Skip automatic installation of Storybook dependency packages
-excludeStoriesFromAppCompilation (_boolean, default: false_) | [Troobleshooting](https://storybook.js.org/basics/guide-angular/#trouble-shooting)) Exclude your stories from being compiled when running your angular dev environment
+`skipInstall` (_boolean, default: false_) | Skip automatic installation of Storybook dependency packages
+`excludeStoriesFromAppCompilation` (_boolean, default: false_) | ([Troobleshooting](https://storybook.js.org/basics/guide-angular/#trouble-shooting)) Exclude your stories from being compiled when running your angular dev environment
 
 ## Roadmap
 
