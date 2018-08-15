@@ -4,21 +4,22 @@ cache:
 notifications:
   email: false
 node_js:
+  - '10'
+  - '9'
   - '8'
-  
+os:
+  - linux
+  - osx
+
 before_script: npm install --quiet -g gulp-cli
+
 script: gulp build
-after_success: gulp coveralls
 
 jobs:
   include:
     - stage: release
-      script: gulp release
-
-stages:
-  -name: release
-  if: branch = master
-
-branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+      node_js: 8
+      os: linux
+      after_success:
+        - gulp coveralls
+        - gulp release

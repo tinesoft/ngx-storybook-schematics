@@ -4,6 +4,7 @@
   "description": "Schematics for adding Storybook to showcase components of your Angular application.",
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "semantic-release": "semantic-release",
     "commitmsg": "commitlint -E GIT_PARAMS"
   },
   "keywords": [
@@ -48,6 +49,13 @@
     "ts-jest": "^23.0.1",
     "yargs": "^12.0.1",
     "zyan-gulp-coveralls": "^0.1.7"
+  },
+  "release": {
+    "pkgRoot": "dist",
+     "assets": [
+          "dist/*.zip",
+          "dist/*.tar.gz"
+     ]
   },
   "babel": {
     "presets": [
