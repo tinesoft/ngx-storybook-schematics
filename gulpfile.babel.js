@@ -9,9 +9,6 @@ import gulpCoveralls from 'zyan-gulp-coveralls';
 import { execCmd, execExternalCmd } from './utility/helpers';
 import { WritableStreamBuffer } from 'stream-buffers';
 
-const stdoutBuffer = new WritableStreamBuffer();
-const stderrBuffer = new WritableStreamBuffer();
-
 const config = {
   srcDir: 'src',
   buildDir: 'dist',
@@ -100,7 +97,6 @@ release.description = `Semantically release project at '${config.buildDir}/'`;
 
 export const build = gulp.series(clean, compile, test, assemble);
 build.description = `Builds the project into '${config.buildDir}/'`;
-
 
 // Linking tasks
 export const doLink = () => execExternalCmd('npm', 'link', { cwd: `${config.buildDir}` });
