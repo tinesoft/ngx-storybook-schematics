@@ -25,6 +25,8 @@
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
     "@schematics/angular": "^0.6.8",
+    "@semantic-release/changelog": "^3.0.0",
+    "@semantic-release/git": "^7.0.1",
     "@types/jasmine": "^2.6.0",
     "@types/jest": "^23.3.1",
     "@types/node": "^8.0.31",
@@ -52,10 +54,12 @@
   },
   "release": {
     "pkgRoot": "dist",
-     "assets": [
-          "dist/*.zip",
-          "dist/*.tar.gz"
-     ]
+    "assets": [
+      "dist/*.zip",
+      "dist/*.tar.gz"
+    ],
+    "verifyConditions": ["@semantic-release/changelog", "@semantic-release/npm", "@semantic-release/git", "@semantic-release/github"],
+    "prepare": ["@semantic-release/changelog", "@semantic-release/npm", "@semantic-release/git"]
   },
   "babel": {
     "presets": [

@@ -7,7 +7,6 @@ import jestCli from 'jest-cli';
 import gulpFile from 'gulp-file';
 import gulpCoveralls from 'zyan-gulp-coveralls';
 import { execCmd, execExternalCmd } from './utility/helpers';
-import { WritableStreamBuffer } from 'stream-buffers';
 
 const config = {
   srcDir: 'src',
@@ -53,12 +52,17 @@ const _packageJson = (done) => {
 
 const _copyAssets = (done) => {
   pump([
-    gulp.src(['README.md', 'CHANGELOG.md', 'LICENSE',
-      `${config.srcDir}/collection.json`,
-      `${config.srcDir}/**/schema.json`,
-      `${config.srcDir}/**/files/**/*`], { dot: true, base: `./${config.srcDir}` }),
+    gulp.src(['README.md', 'CHANGELOG.md', 'LICENSE']),
     gulp.dest(config.buildDir)
-  ], done);
+  ], () => {
+    pump([
+      gulp.src([
+        `${config.srcDir}/collection.json`,
+        `${config.srcDir}/**/schema.json`,
+        `${config.srcDir}/**/files/**/*`], { dot: true, base: `./${config.srcDir}` }),
+      gulp.dest(config.buildDir)
+    ], done);
+  });
 };
 export const assemble = gulp.parallel(_packageJson, _copyAssets);
 assemble.description = `Prepare the package.json and copy assets to build dir '${config.coverageDir}'`;
