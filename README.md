@@ -1,4 +1,8 @@
 
+<p align="center">
+  <img height="256px" width="256px" style="text-align: center;" src="demo/src/assets/logo.svg">
+</p>
+
 # Schematics to easily add [Storybook](https://storybook.js.org/) support to your Angular projects
 
 [![npm version](https://badge.fury.io/js/ngx-storybook-schematics.svg)](https://badge.fury.io/js/ngx-storybook-schematics)
