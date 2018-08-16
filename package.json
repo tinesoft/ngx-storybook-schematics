@@ -72,6 +72,13 @@
     },
     "testRegex": "/src/.*_spec.ts$",
     "testURL": "http://localhost/",
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts",
+      "!src/utility/*.{js,ts}",
+      "!src/**/files/*.{js,ts}",
+      "!**/node_modules/**"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
