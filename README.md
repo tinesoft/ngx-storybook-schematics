@@ -31,7 +31,16 @@ ng add ngx-storybook-schematics
 
 ## Usage
 
-In an Angular CLI project run
+This collection is currently composed of the following schematics:
+
+* [create-storybook](#create-storybook-schematic)
+* [addon](#addon-schematic)
+
+### create-storybook schematic
+
+This is the **main schematic of the collection**, must be run first to create every files and dependencies needed to add Storybook support to your CLI project.
+
+Inside an Angular CLI project run:
 
 ```shell
 ng g ngx-storybook-schematics:create-storybook
@@ -61,13 +70,37 @@ option | description
 `skipInstall` (_boolean, default: false_) | Skip automatic installation of Storybook dependency packages
 `excludeStoriesFromAppCompilation` (_boolean, default: false_) | ([Troobleshooting](https://storybook.js.org/basics/guide-angular/#trouble-shooting)) Exclude your stories from being compiled when running your angular dev environment
 
+### addon schematic
+
+Once you've created the storybook with the `storybook` schematic, you can add core or community [addons](https://storybook.js.org/addons/introduction/) using the latter schematic.
+
+Inside an Angular CLI project run:
+
+```shell
+ng g ngx-storybook-schematics:addon --packageName=<name> [--core]
+```
+
+This schematic will:
+
+* install necessary dependencies for the addon to work
+* create and register the addon in the `addons.js` file
+
+![ngx-addon](demo/src/assets/ngx-addon.svg)
+
+---
+
+option | description
+--- | ---
+`packageName` (_string_) | The name of the addon package to add. For 'core' addons (i.e `--core=true`), you can omit the `@storybook/addons-` prefix
+`core` (_boolean, default: false_) | Specifies whether or not it is a [core addon](https://storybook.js.org/addons/addon-gallery/#addons-maintained-by-storybook-team)
+`skipInstall` (_boolean, default: false_) | Skip automatic installation of addon dependency packages
+
 ## Roadmap
 
 These feature schematics are coming (very) soon into the collection:
 
 * add a schematic to automatically scan and add app component(s) to the Storybook
-* add a schematic to support [addons](https://storybook.js.org/addons/using-addons/)
-* add a schematic to remove support for Storybook at any time
+* ~~add a schematic to support [addons](https://storybook.js.org/addons/using-addons/)~~
 
 ## License
 

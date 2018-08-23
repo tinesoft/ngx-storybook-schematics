@@ -24,6 +24,12 @@
       "factory": "./remove-component/index",
       "alias": "rc",
       "schema": "./remove-component/schema.json"
+    },
+    "addon": {
+      "description": "A schematics to add core or community addons to the Storybook.",
+      "factory": "./addon/index",
+      "alias": "ad",
+      "schema": "./addon/schema.json"
     }
   }
 }
