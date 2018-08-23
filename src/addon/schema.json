@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "AddonSchematicsSchema",
+    "title": "Addon Schematics Schema",
+    "type": "object",
+    "properties": {
+      "project": {
+        "type": "string",
+        "description": "The name of the project.",
+        "$default": {
+          "$source": "projectName"
+        }
+      },
+      "packageName": {
+        "type": "string",
+        "description": "The name of the addon package to add. For 'core' addons (i.e --core=true), you can omit the '@storybook/addons-' prefix."
+      },
+      "core": {
+        "type": "boolean",
+        "description": "Specifies whether or not it is a core addon.",
+        "default": false
+      },
+      "skipInstall": {
+        "description": "Skip installing addon dependency packages.",
+        "type": "boolean",
+        "default": false
+      },
+      "skipImport": {
+        "description": "Skip import of addon in the Stories file.",
+        "type": "boolean",
+        "default": true
+      }
+    },
+    "required": []
+  }
