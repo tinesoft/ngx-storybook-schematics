@@ -33,11 +33,13 @@ export interface NodePackage {
 
 export const Constants = {
   "devDependencies": ['@storybook/angular', 'babel-core'],
+  "addonDependencies": ['@storybook/addons'],
   "tsConfigExclusions": ['stories', '**/*.stories.ts'],
   "pkgJsonScripts": {
     'storybook': 'start-storybook -p 9001 -c .storybook'
   },
   "jsonIndentLevel" : 4,
+  "coreAddonPrefix" : '@storybook/addon-'
 }
 
 export function safeFileDelete(tree: Tree, path: string): boolean {
