@@ -113,7 +113,21 @@ export const unlink = () => execExternalCmd('npm', 'unlink', { cwd: `${config.bu
 unlink.description = `Unlink from project into '${config.buildDir}/'`;
 
 // Demo tasks
-export const runDemo = () => execCmd('ng', `g ngx-storybook-schematics:${argv['schematic'] || 'create-storybook'}`, { cwd: config.demoDir }, `${config.demoDir}`);
+export const runDemo = () => {
+
+  const options = {...argv};
+  // only keep schematic's own options
+  delete options.schematic; 
+  delete options.s;
+  delete options._;
+  delete options.$0;
+
+  let schematicOptions = '';
+  for (let k in options){
+    schematicOptions += ` --${k}=${options[k]}`;
+  }
+  return execCmd('ng', `g ngx-storybook-schematics:${argv['schematic'] || 'create-storybook'}${schematicOptions}`, { cwd: config.demoDir }, `${config.demoDir}`);
+}
 runDemo.description = `Run the provided schematic '${argv['schematic'] || 'create-storybook'}' against the demo app`;
 
 export const resetDemo = async () => {
