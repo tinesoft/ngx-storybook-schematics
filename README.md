@@ -33,17 +33,17 @@ ng add ngx-storybook-schematics
 
 This collection is currently composed of the following schematics:
 
-* [create-storybook](#create-storybook-schematic)
+* [storybook](#storybook-schematic)
 * [addon](#addon-schematic)
 
-### create-storybook schematic
+### storybook schematic
 
 This is the **main schematic of the collection**, must be run first to create every files and dependencies needed to add Storybook support to your CLI project.
 
 Inside an Angular CLI project run:
 
 ```shell
-ng g ngx-storybook-schematics:create-storybook
+ng g ngx-storybook-schematics:storybook
 ```
 
 This schematic will:
@@ -51,7 +51,7 @@ This schematic will:
 * install Storybook, its dependencies, and scripts
 * add necessary files for Storybook to work with Angular
 
-![ngx-create-storybook](demo/src/assets/ngx-create-storybook.svg)
+![ngx-storybook](demo/src/assets/ngx-storybook.svg)
 
 You can now launch the Storybook by:
 

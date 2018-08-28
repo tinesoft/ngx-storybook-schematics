@@ -126,9 +126,9 @@ export const runDemo = () => {
   for (let k in options){
     schematicOptions += ` --${k}=${options[k]}`;
   }
-  return execCmd('ng', `g ngx-storybook-schematics:${argv['schematic'] || 'create-storybook'}${schematicOptions}`, { cwd: config.demoDir }, `${config.demoDir}`);
+  return execCmd('ng', `g ngx-storybook-schematics:${argv['schematic'] || 'storybook'}${schematicOptions}`, { cwd: config.demoDir }, `${config.demoDir}`);
 }
-runDemo.description = `Run the provided schematic '${argv['schematic'] || 'create-storybook'}' against the demo app`;
+runDemo.description = `Run the provided schematic '${argv['schematic'] || 'storybook'}' against the demo app`;
 
 export const resetDemo = async () => {
   await execExternalCmd('git', `checkout HEAD -- ${config.demoDir}/`);

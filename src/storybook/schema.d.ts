@@ -1,4 +1,4 @@
-export interface CreateStorybookOptions {
+export interface StorybookOptions {
     /**
      * The name of the project.
      */
