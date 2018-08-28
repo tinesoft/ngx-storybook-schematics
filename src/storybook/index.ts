@@ -28,10 +28,10 @@ import {
 
 import { Observable, of } from 'rxjs';
 import { map, concatMap } from 'rxjs/operators';
-import { CreateStorybookOptions } from './schema';
+import { StorybookOptions } from './schema';
 
 
-export default function(options: CreateStorybookOptions): Rule {
+export default function(options: StorybookOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
 
     return chain([
@@ -43,7 +43,7 @@ export default function(options: CreateStorybookOptions): Rule {
   };
 }
 
-function updateDependencies(options: CreateStorybookOptions): Rule {
+function updateDependencies(options: StorybookOptions): Rule {
   return (tree: Tree, context: SchematicContext): Observable<Tree> => {
     if(!options.skipInstall){
       context.logger.debug('Updating dependencies...');
@@ -75,7 +75,7 @@ function updateDependencies(options: CreateStorybookOptions): Rule {
   };
 }
 
-function addStorybookFiles(options: CreateStorybookOptions): Rule {
+function addStorybookFiles(options: StorybookOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
     context.logger.debug('adding Storybook files to host dir');
 
@@ -97,7 +97,7 @@ function addStorybookScriptToPackageJson(): Rule {
   };
 }
 
-function addStorybookExclusionsToAppTsConfigJson(options: CreateStorybookOptions): Rule {
+function addStorybookExclusionsToAppTsConfigJson(options: StorybookOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
 
     const appTsConfigPath = getProjectPath(tree,options,'tsconfig.app.json');

@@ -1,13 +1,13 @@
 import { Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import * as path from 'path';
-import { CreateStorybookOptions } from './schema';
+import { StorybookOptions } from './schema';
 import { Constants } from '../utility/utils';
 
 
 const collectionPath = path.join(__dirname, '../collection.json');
 
-describe('create-storybook-schematics', () => {
+describe('storybook-schematics', () => {
   const runner = new SchematicTestRunner('ngx-storybook-schematics', collectionPath);
 
   let appTree: UnitTestTree;
@@ -31,7 +31,7 @@ describe('create-storybook-schematics', () => {
     skipTests: false,
   };
 
-  const defaultOptions: CreateStorybookOptions = {
+  const defaultOptions: StorybookOptions = {
     project: 'demo'
   };
 
@@ -43,7 +43,7 @@ describe('create-storybook-schematics', () => {
   it('should fail if no target application project is provided', async () => {
     let error;
     try {
-      await runner.runSchematicAsync('create-storybook', defaultOptions, Tree.empty()).toPromise();
+      await runner.runSchematicAsync('storybook', defaultOptions, Tree.empty()).toPromise();
     }
     catch (err) {
       error = err;
@@ -54,14 +54,14 @@ describe('create-storybook-schematics', () => {
   }, 45000);
 
   it('should create storybook files', async () => {
-    const tree = await runner.runSchematicAsync('create-storybook', defaultOptions, appTree).toPromise();
+    const tree = await runner.runSchematicAsync('storybook', defaultOptions, appTree).toPromise();
     const files = tree.files;
     expect(files.indexOf('/projects/demo/.storybook/config.js')).toBeGreaterThanOrEqual(0);
     expect(files.indexOf('/projects/demo/src/stories/index.ts')).toBeGreaterThanOrEqual(0);
   }, 45000);
 
   it('should add storybook dependencies and script to package.json', async () => {
-    const tree = await runner.runSchematicAsync('create-storybook', defaultOptions, appTree).toPromise();
+    const tree = await runner.runSchematicAsync('storybook', defaultOptions, appTree).toPromise();
     const pkg = JSON.parse(tree.readContent('./package.json'));
 
     Constants.devDependencies.map(dep => expect(pkg.devDependencies[dep]).toBeDefined());
@@ -71,7 +71,7 @@ describe('create-storybook-schematics', () => {
 
   it('should exclude storybook files from tsconfig.app.json if option is set', async () => {
     const options = {...defaultOptions, excludeStoriesFromAppCompilation: true};
-    const tree = await runner.runSchematicAsync('create-storybook', options, appTree).toPromise();
+    const tree = await runner.runSchematicAsync('storybook', options, appTree).toPromise();
     const tsconfig = JSON.parse(tree.readContent('/projects/demo/tsconfig.app.json'));
 
     Constants.tsConfigExclusions.map(e => expect(tsconfig.exclusions).toContain(e));
