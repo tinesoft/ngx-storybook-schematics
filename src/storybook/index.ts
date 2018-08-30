@@ -9,6 +9,7 @@ import {
   mergeWith,
   noop,
   template,
+  filter,
 } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
@@ -81,6 +82,7 @@ function addStorybookFiles(options: StorybookOptions): Rule {
 
     const projectRoot = getProjectPath(tree, options);
     const templateSource = apply(url('./files'), [
+      options.tsconfig ? noop() : filter(path => !path.endsWith('tsconfig.json')),
       template({...options}),
       move(projectRoot),
     ]);

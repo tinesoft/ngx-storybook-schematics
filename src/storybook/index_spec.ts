@@ -57,6 +57,7 @@ describe('storybook-schematics', () => {
     const tree = await runner.runSchematicAsync('storybook', defaultOptions, appTree).toPromise();
     const files = tree.files;
     expect(files.indexOf('/projects/demo/.storybook/config.js')).toBeGreaterThanOrEqual(0);
+    expect(files.indexOf('/projects/demo/.storybook/tsconfig.json')).toEqual(-1);
     expect(files.indexOf('/projects/demo/src/stories/index.ts')).toBeGreaterThanOrEqual(0);
   }, 45000);
 
@@ -75,5 +76,12 @@ describe('storybook-schematics', () => {
     const tsconfig = JSON.parse(tree.readContent('/projects/demo/tsconfig.app.json'));
 
     Constants.tsConfigExclusions.map(e => expect(tsconfig.exclusions).toContain(e));
+  }, 45000);
+
+  it('should add custom "tsconfig.json" to storybook files if option is set', async () => {
+    const options = { ...defaultOptions, tsconfig:true};
+    const tree = await runner.runSchematicAsync('storybook', options, appTree).toPromise();
+    const files = tree.files;
+    expect(files.indexOf('/projects/demo/.storybook/tsconfig.json')).toBeGreaterThanOrEqual(0);
   }, 45000);
 });
