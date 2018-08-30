@@ -20,6 +20,11 @@
         "description": "Exclude your stories from being compiled when running in dev.",
         "type": "boolean",
         "default": false
+      },
+      "tsconfig": {
+        "description": "Specifies whether or not a custom tsconfig.json file should be used.",
+        "type": "boolean",
+        "default": false
       }
     },
     "required": []
