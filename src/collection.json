@@ -1,11 +1,18 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "extends": "@schematics/angular",
   "schematics": {
     "storybook": {
       "description": "A schematics to easily add Storybook to your Angular CLI project.",
       "factory": "./storybook/index",
       "alias": "st",
       "schema": "./storybook/schema.json"
+    },
+    "component": {
+      "description": "A schematcis to create a component and add its story.",
+      "factory": "./component/index",
+      "alias": "c",
+      "schema": "./component/schema.json"
     },
     "addon": {
       "description": "A schematics to add core or community addons to the Storybook.",

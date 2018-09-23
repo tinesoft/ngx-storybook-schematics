@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "ComponentSchematicsSchema",
+    "title": "Component Schematics Schema",
+    "type": "object",
+    "properties": {
+      "skipStories": {
+        "type": "boolean",
+        "default": false,
+        "description": "Skips generating the stories along with the component."
+      },
+      "useComponent": {
+        "type": "boolean",
+        "default": true,
+        "description": "Specifies whether or not to use the component name (instead of template) in the story."
+      }
+    },
+    "required": []
+  }
