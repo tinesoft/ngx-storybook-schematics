@@ -17,13 +17,19 @@
 
 ## Installation
 
-Install globally
+Install `ngx-storybook-schematics` from NPM:
 
 ```shell
-npm install -g ngx-storybook-schematics
+npm install -D ngx-storybook-schematics
 ```
 
-Optionally run as one command in an Angular CLI app directory. Note this will add the schematic as a dependency to your project.
+or
+
+```shell
+yarn add -D ngx-storybook-schematics
+```
+
+or
 
 ```shell
 ng add ngx-storybook-schematics
@@ -34,11 +40,12 @@ ng add ngx-storybook-schematics
 This collection is currently composed of the following schematics:
 
 * [storybook](#storybook-schematic)
+* [component](#component-schematic) : an extension of `@schematics/angular`'s [component](https://github.com/angular/angular-cli/wiki/generate-component), with support for generating stories along with regular component files
 * [addon](#addon-schematic)
 
 ### storybook schematic
 
-This is the **main schematic of the collection**, must be run first to create every files and dependencies needed to add Storybook support to your CLI project.
+This is the **main schematic of the collection**, it creates every files and dependencies needed to add Storybook support to your CLI project.
 
 Inside an Angular CLI project run:
 
@@ -70,6 +77,26 @@ option | description
 `skipInstall` (_boolean, default: false_) | Skip automatic installation of Storybook dependency packages
 `excludeStoriesFromAppCompilation` (_boolean, default: false_) | ([Troobleshooting](https://storybook.js.org/basics/guide-angular/#trouble-shooting)) Exclude your stories from being compiled when running your angular dev environment
 
+### component schematic
+
+Inside an Angular CLI project run:
+
+```shell
+ng g ngx-storybook-schematics:component <name>
+```
+
+This schematic calls `@schematics/angular`'s [component](https://github.com/angular/angular-cli/wiki/generate-component) under the hood. So it accepts the same options as the original schematics, and will create the regular component files, along with its `*.stories.ts` file.
+
+![ngx-component](demo/src/assets/ngx-component.svg)
+
+---
+
+option | description
+--- | ---
+`name` (_string_) | The name of the component to create
+`skipStories` (_boolean, default: false_) | Skips generating the stories along with the component
+`...` | All other options from `@schematics/angular`'s [component](https://github.com/angular/angular-cli/wiki/generate-component#options)
+
 ### addon schematic
 
 Once you've created the storybook with the `storybook` schematic, you can add core or community [addons](https://storybook.js.org/addons/introduction/) using the latter schematic.
@@ -95,12 +122,13 @@ option | description
 `core` (_boolean, default: false_) | Specifies whether or not it is a [core addon](https://storybook.js.org/addons/addon-gallery/#addons-maintained-by-storybook-team)
 `skipInstall` (_boolean, default: false_) | Skip automatic installation of addon dependency packages
 
-## Roadmap
+## Set as default schematics collection
 
-These feature schematics are coming (very) soon into the collection:
+`ngx-storybook-schematics` collection extends `@schematics/angular`, so you can use it as the default schematics collection in your CLI project. This will allows you to call this project's schematics without needing to prefix each of `ng generate` command with  `ngx-storybook-schematics:`. And you still can call original Angular schematics as usual.
 
-* add a schematic to automatically scan and add app component(s) to the Storybook
-* ~~add a schematic to support [addons](https://storybook.js.org/addons/using-addons/)~~
+```shell
+ng set defaults.schematics.collection=ngx-storybook-schematics
+```
 
 ## License
 

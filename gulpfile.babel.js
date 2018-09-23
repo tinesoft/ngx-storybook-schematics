@@ -24,6 +24,8 @@ const argv = yargs
   })
   .argv;
 
+  const extendedSchematics = ['component'];
+
 // Cleaning tasks
 export const cleanBuild = (cb) => del([config.buildDir]);
 cleanBuild.description = `Clean the build directory '${config.buildDir}/'`;
@@ -36,7 +38,7 @@ clean.description = `Clean all directories: '${config.buildDir}/', '${config.cov
 
 // Packaging tasks
 const _packageJson = (done) => {
-  let pkgJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+  let pkgJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
   let targetPkgJson = {};
   let fieldsToCopy = ['name', 'version', 'description', 'keywords', 'author', 'license', 'bugs', 'homepage', 'dependencies', 'publishConfig', 'repository'];
   //only copy needed properties from project's package json
@@ -64,7 +66,25 @@ const _copyAssets = (done) => {
     ], done);
   });
 };
-export const assemble = gulp.parallel(_packageJson, _copyAssets);
+
+const _mergeSchemaJson = (done) => {
+  let gulpFiles = [];
+  extendedSchematics.forEach(schematicName => {
+    let schemaJson = JSON.parse(fs.readFileSync(`${config.srcDir}/${schematicName}/schema.json`, 'utf-8'));
+    let ngSchemaJson = JSON.parse(fs.readFileSync(`node_modules/@schematics/angular/${schematicName}/schema.json`, 'utf-8'));
+    
+    schemaJson.properties = { ...schemaJson.properties, ...ngSchemaJson.properties};
+    let gf = gulpFile(`${schematicName}/schema.json`, JSON.stringify(schemaJson, null, 2), { src: true });
+    gulpFiles.push(gf)
+  });
+  
+  pump([
+    ...gulpFiles,
+    gulp.dest(config.buildDir)
+  ], done);
+};
+
+export const assemble = gulp.series(_packageJson, _copyAssets, _mergeSchemaJson);
 assemble.description = `Prepare the package.json and copy assets to build dir '${config.coverageDir}'`;
 
 // Compiling tasks

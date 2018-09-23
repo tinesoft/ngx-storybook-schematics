@@ -53,15 +53,6 @@ export const Constants:SchematicsConstants = {
   "coreAddonPrefix" : '@storybook/addon-'
 }
 
-export function safeFileDelete(tree: Tree, path: string): boolean {
-  if (tree.exists(path)) {
-    tree.delete(path);
-    return true;
-  } else {
-    return false;
-  }
-}
-
 export function addPropertyToPackageJson(
   tree: Tree,
   context: SchematicContext,
