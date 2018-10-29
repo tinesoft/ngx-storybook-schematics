@@ -30,8 +30,19 @@ export interface NodePackage {
   version: string;
 }
 
+interface PackageJsonScripts{  
+  [key:string]: string
+}
+interface SchematicsConstants  {
+  devDependencies: string[],
+  addonDependencies: string[],
+  tsConfigExclusions: string[],
+  pkgJsonScripts: PackageJsonScripts
+  jsonIndentLevel : number,
+  coreAddonPrefix : string
+}
 
-export const Constants = {
+export const Constants:SchematicsConstants = {
   "devDependencies": ['@storybook/angular', 'babel-core'],
   "addonDependencies": ['@storybook/addons'],
   "tsConfigExclusions": ['stories', '**/*.stories.ts'],
