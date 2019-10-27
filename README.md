@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img height="256px" width="256px" style="text-align: center;" src="https://cdn.rawgit.com/tinesoft/ngx-storybook-schematics/master/demo/src/assets/logo.svg">
+  <img height="256px" width="256px" style="text-align: center;" src="https://cdn.jsdelivr.net/gh/tinesoft/ngx-storybook-schematics@master/demo/src/assets/logo.svg">
 </p>
 
 # Schematics to easily add [Storybook](https://storybook.js.org/) support to your Angular projects
